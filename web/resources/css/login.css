@@ -1,0 +1,12 @@
+body{
+    background-color: #ECF3FD;
+}
+.container{
+    width: 400px;
+    margin: 10% auto;
+}
+
+.ui-state-default .icon-login{
+    background-image: url(../images/icons/login.png);
+    background-size: contain;
+}
