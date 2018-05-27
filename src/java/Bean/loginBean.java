@@ -7,8 +7,8 @@ package Bean;
 
 import java.awt.event.ActionEvent;
 import java.io.Serializable;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
-import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import org.primefaces.PrimeFaces;
@@ -17,8 +17,8 @@ import org.primefaces.PrimeFaces;
  *
  * @author Fran
  */
-@Named(value="loginBean")
 @SessionScoped
+@Named(value="loginBean")
 public class loginBean implements Serializable{
 
     private String username;

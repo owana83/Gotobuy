@@ -23,7 +23,7 @@
                         <p:password id="password" value="#{loginBean.password}" required="true" label="password" />
 
                         <f:facet name="footer">
-                            <p:commandButton value="Login" update="growl" actionListener="#{loginBean.login}" icon="icon-login"
+                            <p:commandButton value="Login" update="growl" actionListener="#{loginBean.login(event)}" icon="icon-login"
                                              oncomplete="handleLoginRequest(xhr, status, args)" />
                         </f:facet>  
                     </h:panelGrid>

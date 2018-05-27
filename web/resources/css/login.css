@@ -4,6 +4,7 @@ body{
 .container{
     width: 400px;
     margin: 10% auto;
+    font-size:  85%;
 }
 
 .ui-state-default .icon-login{
