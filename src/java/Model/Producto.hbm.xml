@@ -34,13 +34,12 @@
         <property name="imagen" type="string">
             <column name="imagen" length="60" />
         </property>
-        <set name="listas" table="lista_tiene_producto" inverse="false" lazy="true" fetch="select">
+        <set name="listas" table="lista_tiene_producto" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="Producto_codigo" not-null="true" />
             </key>
-            <many-to-many entity-name="Model.Lista">
-                <column name="Lista_idLista" not-null="true" />
-            </many-to-many>
+
+            <many-to-many column="Lista_idLista" class="Model.Lista" />
         </set>
     </class>
 </hibernate-mapping>

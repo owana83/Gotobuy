@@ -14,13 +14,13 @@
         <property name="nombre" type="string">
             <column name="nombre" length="45" not-null="true" unique="true" />
         </property>
-        <set name="productos" table="lista_tiene_producto" inverse="false" lazy="true" fetch="select">
+        <set name="productos" table="lista_tiene_producto" cascade="save-update" lazy="true" fetch="select">
             <key>
                 <column name="Lista_idLista" not-null="true" />
             </key>
-            <many-to-many entity-name="Model.Producto">
-                <column name="Producto_codigo" not-null="true" />
-            </many-to-many>
+                
+            <many-to-many column="Producto_codigo" class="Model.Producto" />
+
         </set>
     </class>
 </hibernate-mapping>
