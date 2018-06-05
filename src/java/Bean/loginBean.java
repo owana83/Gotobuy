@@ -5,59 +5,65 @@
  */
 package Bean;
 
-import java.awt.event.ActionEvent;
+import Dao.UsuarioDao;
+import Dao.UsuarioDaoImpl;
+import Model.Usuario;
+import Util.MyUtil;
 import java.io.Serializable;
-import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
-import javax.inject.Named;
 import org.primefaces.PrimeFaces;
 
 /**
  *
  * @author Fran
  */
+@ManagedBean(name = "loginBean")
 @SessionScoped
-@Named(value="loginBean")
-public class loginBean implements Serializable{
+public class loginBean implements Serializable {
 
-    private String username;
-    private String password;
-    
+    private Usuario usuario;
+    private UsuarioDao usuarioDao;
+
     public loginBean() {
+        this.usuarioDao = new UsuarioDaoImpl();
+        if (this.usuario == null) {
+            this.usuario = new Usuario();
+        }
     }
 
-    public String getUsername() {
-        return username;
+    public Usuario getUsuario() {
+        return usuario;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public void login(ActionEvent event) {
+    public void login() {
         FacesMessage message = null;
         boolean loggedIn = false;
+        String ruta = "http://localhost:8080/Gotobuy";
 
-        if (username != null && username.equals("admin") && password != null && password.equals("admin")) {
+        this.usuario = this.usuarioDao.login(this.usuario);
+
+        if (this.usuario != null) {
             loggedIn = true;
-            message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Welcome", username);
+            message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Bienvenido", this.usuario.getNombre());
+            ruta = MyUtil.basePathLogin()+"Views/inicio.xhtml";
+//            ruta = "http://localhost:8080/Gotobuy/faces/Views/inicio.xhtml";
+
         } else {
             loggedIn = false;
-            message = new FacesMessage(FacesMessage.SEVERITY_WARN, "Loggin Error", "Invalid credentials");
+            message = new FacesMessage(FacesMessage.SEVERITY_WARN, "Loggin Error", "Email y/o contraseña incorrecta");
         }
 
         FacesContext.getCurrentInstance().addMessage(null, message);
         PrimeFaces.current().ajax().addCallbackParam("loggedIn", loggedIn);
+        PrimeFaces.current().ajax().addCallbackParam("ruta", ruta);
 
     }
-    
+
 }

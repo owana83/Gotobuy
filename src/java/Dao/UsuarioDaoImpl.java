@@ -13,28 +13,35 @@ import org.hibernate.Session;
  *
  * @author Fran
  */
-public class UsuarioDaoImpl implements UsuarioDao{
+public class UsuarioDaoImpl implements UsuarioDao {
 
     @Override
     public Usuario findByUsuario(Usuario usuario) {
         Usuario model = null;
         Session sesion = HibernateUtil.getSessionFactory().getCurrentSession();
-        String sql = "";
-        
+//        Session sesion = HibernateUtil.getSessionFactory().openSession();
+        String sql = "FROM Usuario WHERE Email = '" + usuario.getEmail() + "'";
+
         try {
             sesion.beginTransaction();
+
             model = (Usuario) sesion.createQuery(sql).uniqueResult();
-            sesion.beginTransaction().commit();
+            sesion.getTransaction().commit();
         } catch (Exception e) {
-            sesion.beginTransaction().rollback();
+            sesion.getTransaction().rollback();
         }
-        
-        return null;
+
+        return model;
     }
 
     @Override
     public Usuario login(Usuario usuario) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Usuario model = this.findByUsuario(usuario);
+        if (model != null) {
+            if (!usuario.getPassword().equals(model.getPassword())) {
+                model = null;
+            }
+        }
+        return model;
     }
-    
 }

@@ -12,18 +12,18 @@
         <div class="container">
             <p:growl id="growl" sticky="true" showDetail="true" life="3000" />
             <h:form id="formLogin">
-                <p:growl id="msgs" showDetail="false" />
+                <!--<p:growl id="msgs" showDetail="false" />-->
 
                 <p:panel id="basic" header="Inicio sesión" footer="He olvidado mi contraseña" style="margin-bottom:20px">
                     <h:panelGrid columns="2" cellpadding="5">
-                        <h:outputLabel for="username" value="Email:" />
-                        <p:inputText id="username" value="#{loginBean.username}" required="true" label="username" />
+                        <h:outputLabel for="email" value="Email:" />
+                        <p:inputText id="email" value="#{loginBean.usuario.email}" required="true" label="email" />
 
                         <h:outputLabel for="password" value="Contraseña:" />
-                        <p:password id="password" value="#{loginBean.password}" required="true" label="password" />
+                        <p:password id="password" value="#{loginBean.usuario.password}" required="true" label="password" />
 
                         <f:facet name="footer">
-                            <p:commandButton value="Login" update="growl" actionListener="#{loginBean.login(event)}" icon="icon-login"
+                            <p:commandButton value="Login" update="growl" actionListener="#{loginBean.login}" icon="icon-login"
                                              oncomplete="handleLoginRequest(xhr, status, args)" />
                         </f:facet>  
                     </h:panelGrid>
@@ -33,11 +33,10 @@
         <script type="text/javascript">
             function handleLoginRequest(xhr, status, args) {
                 if(args.validationFailed || !args.loggedIn) {
-                    PF('dlg').jq.effect("shake", {times:5}, 100);
+
                 }
                 else {
-                    PF('dlg').hide();
-                    $('#loginLink').fadeOut();
+                    location.href = args.ruta;
                 }
             }
         </script>

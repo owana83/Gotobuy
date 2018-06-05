@@ -11,8 +11,12 @@ package Util;
  */
 public class MyUtil {
     
-    public static String baseurl(){
+    public static String baseUrl(){
         return "http://localhost:8080/Gotobuy/faces/";
+    }
+    
+    public static String basePathLogin(){
+        return "/Gotobuy/faces/";
     }
     
 }
