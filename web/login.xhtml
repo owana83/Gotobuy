@@ -12,15 +12,15 @@
         <div class="container">
             <p:growl id="growl" sticky="true" showDetail="true" life="3000" />
             <h:form id="formLogin">
-                <!--<p:growl id="msgs" showDetail="false" />-->
+                <p:growl id="msgs" showDetail="false" />
 
                 <p:panel id="basic" header="Inicio sesión" footer="He olvidado mi contraseña" style="margin-bottom:20px">
                     <h:panelGrid columns="2" cellpadding="5">
                         <h:outputLabel for="email" value="Email:" />
-                        <p:inputText id="email" value="#{loginBean.usuario.email}" required="true" label="email" />
+                        <p:inputText id="email" value="#{loginBean.usuario.email}" required="true" label="email" placeholder="111@gmail.com"/>
 
                         <h:outputLabel for="password" value="Contraseña:" />
-                        <p:password id="password" value="#{loginBean.usuario.password}" required="true" label="password" />
+                        <p:password id="password" value="#{loginBean.usuario.password}" required="true" label="password" placeholder="111"/>
 
                         <f:facet name="footer">
                             <p:commandButton value="Login" update="growl" actionListener="#{loginBean.login}" icon="icon-login"

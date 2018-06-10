@@ -18,12 +18,21 @@ h1 {
 
 a:link, a:visited {
   color: #045491;
-  font-weight : bold;
+  /*font-weight : bold;*/
   text-decoration: none;
 }
 
 a:link:hover, a:visited:hover  {
   color: #045491;
-  font-weight : bold;
+  /*font-weight : bold;*/
   text-decoration : underline;
+}
+
+td.logo{
+    width: 100px;
+}
+
+#prods.header{
+    background: white;
+    font-weight: bold;
 }

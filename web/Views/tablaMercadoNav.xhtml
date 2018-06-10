@@ -1,0 +1,89 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:fn="http://java.sun.com/jsp/jstl/functions">
+    <h:form>
+        <div class="ui-g">
+            <div class="ui-g-12 ui-md-6 ui-lg-3 recuadro">
+
+
+                <div class="listado_titulo"><a href="#">Frutas</a></div>
+                <div class="listado">
+                    <h:commandLink value="Naranjas y otros cítricos" action="#{productoBean.irAProductosSubcat('Naranjas y otros citricos')}"/>
+                </div>
+                <div>
+                    <h:commandLink value="Manzanas y Peras" action="#{productoBean.irAProductosSubcat('Manzanas y Peras')}"/>
+                </div>
+                <div class="listado"><a href="productos.xhtml">Plátanos y Bananas</a></div>
+                <div class="listado">Uvas</div>
+                <div class="listado">Fruta de hueso</div>
+
+            </div>
+            <div class="ui-g-12 ui-md-6 ui-lg-3 recuadro">
+                <div class="listado_titulo"><a href="productos.xhtml">Verduras y hortalizas</a></div>
+                <div class="listado"><a href="productos.xhtml">Patatas, Cebollas y Ajos</a></div>
+                <div class="listado"><a href="productos.xhtml">Tomates y Pepinos</a></div>
+                <div class="listado"><a href="productos.xhtml">Hortalizas</a></div>
+                <div class="listado">Ensaladas y Verduras Preparadas</div>
+                <div class="listado">Setas y Hongos</div>
+                <div class="listado">Verduras y Hortalizas Congeladas</div>
+                <div class="listado">Infusiones, Mieles y Hierbas Aromáticas</div>
+            </div>
+            <div class="ui-g-12 ui-md-6 ui-lg-3 recuadro">
+                <div class="listado_titulo"><a href="productos.xhtml">Carnicería</a></div>
+                <div class="listado">Aves y Pollo</div>
+                <div class="listado">Cerdo</div>
+                <div class="listado">Vacuno</div>
+                <div class="listado">Cordero</div>
+                <div class="listado">Conejo</div>
+                <div class="listado">Hamburguesas</div>
+                <div class="listado">Carne Picada</div>
+                <div class="listado">Embutidos Frescos</div>
+                <div class="listado">Preparados y Arreglos de Carne</div>
+            </div>
+            <div class="ui-g-12 ui-md-6 ui-lg-3 recuadro">
+                <div class="listado_titulo">Sushi y Recién Hecho</div>
+                <div class="listado">Sushi del Día</div>
+                <div class="listado">Cocina Internacional</div>
+                <div class="listado">Cocina Nacional</div>
+                <div class="listado">Ensaladas, Ensaladillas y Sandwiches</div>
+                <div class="listado">Empanadas y empanadillas</div>
+                <div class="listado">Pasta y Pizza</div>
+            </div>
+            <div class="ui-g-12 ui-md-6 ui-lg-3 recuadro">
+                <div class="listado_titulo">Pescadería</div>
+                <div class="listado">Pescado Fresco</div>
+                <div class="listado">Marisco Fresco</div>
+                <div class="listado">Pescado y Marisco Congelado</div>
+                <div class="listado">Gulas, Surimi, Elaborados</div>
+                <div class="listado">Pulpo, Calamar y Sepia</div>
+            </div>
+            <div class="ui-g-12 ui-md-6 ui-lg-3 recuadro">
+                <div class="listado_titulo">Charcutería</div>
+                <div class="listado">Jamón serrano e ibérico Pieza</div>
+                <div class="listado">Jamón Serrano e Ibérico Envasado</div>
+                <div class="listado">Fiambre de Pavo y Pollo</div>
+                <div class="listado">Foie, Patés y Sobrasadas</div>
+                <div class="listado">Salchichas</div>
+                <div class="listado">Jamón Cocido y Lacón</div>
+                <div class="listado">Chorizo, Lomo y Otros</div>
+                <div class="listado">Salchichón, Salami y Fuet</div>
+                <div class="listado">Mortadela y Chopped</div>
+                <div class="listado">Bacon y Panceta</div>
+            </div>
+            <div class="ui-g-12 ui-md-6 ui-lg-3 recuadro">
+                <div class="listado_titulo">Panadería, Bollería y Pastelería</div>
+                <div class="listado">Panadería</div>
+                <div class="listado">Panadería Tradicional</div>
+                <div class="listado">Bollería</div>
+                <div class="listado">Bollería Tradicional</div>
+                <div class="listado">Pastelería salada</div>
+                <div class="listado">Masa Fresca y Bases</div>
+                <div class="listado">Pastelería y Repostería</div>
+            </div>
+
+        </div>
+    </h:form>
+</ui:composition>

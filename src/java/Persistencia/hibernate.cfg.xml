@@ -48,9 +48,9 @@ Contributor(s):
     <property name="hibernate.connection.password">root</property>
     <property name="hibernate.show_sql">true</property>
     <property name="hibernate.current_session_context_class">thread</property>
-    <mapping resource="Model/Ubicacion.hbm.xml"/>
-    <mapping resource="Model/Producto.hbm.xml"/>
-    <mapping resource="Model/Lista.hbm.xml"/>
-    <mapping resource="Model/Usuario.hbm.xml"/>
+    <mapping resource="Entities/Ubicacion.hbm.xml"/>
+    <mapping resource="Entities/Producto.hbm.xml"/>
+    <mapping resource="Entities/Lista.hbm.xml"/>
+    <mapping resource="Entities/Usuario.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>

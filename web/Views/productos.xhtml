@@ -1,0 +1,34 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+                template="template.xhtml">
+    <ui:define name="nav">
+        <ui:include src="tabView.xhtml"/>
+    </ui:define>
+    <ui:define name="content">
+        <h:form id="form">
+            <p:dataGrid var="prod" value="#{productoBean.productosSubcategoria}" columns="4" layout="grid"
+                        rows="40" paginator="false" id="prods" lazy="true">
+
+                <f:facet name="header" class="header">
+                    Cars for Sale
+                </f:facet>
+
+                <p:panel style="text-align:center">
+                    <h:panelGrid columns="1" style="width:100%">
+                        <p:graphicImage value="../resources/images/mercado/#{prod.subcategoria}/#{prod.imagen}" width="100%" title="#{prod.nombre}"/> 
+                        
+                        <h:outputText value="#{prod.subcategoria}" />
+                        <h:outputText value="#{prod.nombre}" />
+                        <h:outputText value="#{prod.precio}" />
+                        <h:outputText value="#{prod.marca}" />
+                    </h:panelGrid>
+                </p:panel>
+
+            </p:dataGrid>
+        </h:form>
+    </ui:define>
+</ui:composition>

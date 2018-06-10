@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 25-may-2018 20:04:57 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class catalog="gotobuy" name="Entities.Lista" optimistic-lock="version" table="lista">
+    <id name="idLista" type="int">
+      <column name="idLista"/>
+      <generator class="assigned"/>
+    </id>
+    <many-to-one class="Entities.Usuario" fetch="select" name="usuario">
+      <column length="9" name="Usuario_dni" not-null="true"/>
+    </many-to-one>
+    <property name="nombre" type="string">
+      <column length="45" name="nombre" not-null="true" unique="true"/>
+    </property>
+    <set cascade="save-update" fetch="select" lazy="true" name="productos" table="lista_tiene_producto">
+      <key>
+        <column name="Lista_idLista" not-null="true"/>
+      </key>
+      <many-to-many class="Entities.Producto" column="Producto_codigo"/>
+    </set>
+  </class>
+</hibernate-mapping>

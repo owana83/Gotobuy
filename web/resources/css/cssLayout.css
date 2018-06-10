@@ -1,10 +1,13 @@
 
 #top {
     position: relative;
-    background-color: #036fab;
     color: white;
     padding: 5px;
     margin: 0px 0px 10px 0px;
+}
+
+#top img{
+    cursor: pointer;
 }
 
 #bottom {
@@ -47,15 +50,34 @@
 }
 
 #top a:link, #top a:visited {
-  color: white;
-  font-weight : bold;
-  text-decoration: none;
+    color: white;
+    font-weight : bold;
+    text-decoration: none;
 }
 
 #top a:link:hover, #top a:visited:hover  {
-  color: black;
-  font-weight : bold;
-  text-decoration : underline;
+    color: black;
+    font-weight : bold;
+    text-decoration : underline;
+}
+
+.ui-tabs-panel table {
+    width: 100%;
+}
+
+.recuadro{
+    background-color: #eeeeee;
+    border: 2px white solid;
+    padding: 10px;
+}
+
+.listado_titulo{
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.listado{
+    font-size: 14px;
 }
 
 

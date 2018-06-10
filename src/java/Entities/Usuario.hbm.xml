@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 25-may-2018 20:04:57 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class catalog="gotobuy" name="Entities.Usuario" optimistic-lock="version" table="usuario">
+    <id name="dni" type="string">
+      <column length="9" name="dni"/>
+      <generator class="assigned"/>
+    </id>
+    <property name="nombre" type="string">
+      <column length="45" name="nombre" not-null="true"/>
+    </property>
+    <property name="apellido" type="string">
+      <column length="45" name="apellido"/>
+    </property>
+    <property name="tlf" type="string">
+      <column length="9" name="tlf"/>
+    </property>
+    <property name="email" type="string">
+      <column name="email" not-null="true"/>
+    </property>
+    <property name="password" type="string">
+      <column length="90" name="password" not-null="true"/>
+    </property>
+    <set fetch="select" inverse="true" lazy="true" name="listas" table="lista">
+      <key>
+        <column length="9" name="Usuario_dni" not-null="true"/>
+      </key>
+      <one-to-many class="Entities.Lista"/>
+    </set>
+  </class>
+</hibernate-mapping>
