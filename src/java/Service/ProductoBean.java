@@ -12,6 +12,8 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import Dao.IProductoDao;
 import java.util.ArrayList;
+import java.util.Map;
+import javax.faces.context.FacesContext;
 
 /**
  *
@@ -23,22 +25,27 @@ public class ProductoBean {
 
     private List<Producto> productos;
     private List<Producto> productosSubcategoria;
+    String data = "";
 
     public List<Producto> getProductosSubcategoria() {
         return productosSubcategoria;
     }
-    
+
     public ProductoBean() {
         this.productos = new ArrayList<Producto>();
         this.productosSubcategoria = new ArrayList<Producto>();
     }
-    
+
     public List<Producto> getProductos() {
         IProductoDao productoDao = new ProductoHbmDao();
         this.productos = productoDao.obtenerProductos();
         return productos;
     }
-    
+
+    public String getData() {
+        return data;
+    }
+
     public String irAProductosSubcat(String subcategoria) {
         IProductoDao productoDao = new ProductoHbmDao();
         this.productosSubcategoria = new ArrayList<Producto>();
@@ -48,7 +55,8 @@ public class ProductoBean {
                 this.productosSubcategoria.add(p);
             }
         }
+        this.data = subcategoria;
         return "productos";
     }
-    
+
 }

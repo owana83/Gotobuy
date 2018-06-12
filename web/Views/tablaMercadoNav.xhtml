@@ -11,7 +11,9 @@
 
                 <div class="listado_titulo"><a href="#">Frutas</a></div>
                 <div class="listado">
-                    <h:commandLink value="Naranjas y otros cítricos" action="#{productoBean.irAProductosSubcat('Naranjas y otros citricos')}"/>
+                    <h:commandLink value="Naranjas y otros cítricos" action="#{productoBean.irAProductosSubcat('Naranjas y otros citricos')}">
+                        <f:param name = "subcategoria" value = "Naranjas y otros citricos" />
+                    </h:commandLink>
                 </div>
                 <div>
                     <h:commandLink value="Manzanas y Peras" action="#{productoBean.irAProductosSubcat('Manzanas y Peras')}"/>

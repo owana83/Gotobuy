@@ -27,7 +27,7 @@
     <property name="nombre" type="string">
       <column length="45" name="nombre"/>
     </property>
-    <property name="precio" type="java.lang.Byte">
+    <property name="precio" type="java.lang.Double">
       <column name="precio" precision="2" scale="0"/>
     </property>
     <property name="imagen" type="string">

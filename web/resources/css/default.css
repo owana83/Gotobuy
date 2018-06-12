@@ -17,15 +17,15 @@ h1 {
 }
 
 a:link, a:visited {
-  color: #045491;
-  /*font-weight : bold;*/
-  text-decoration: none;
+    color: #045491;
+    /*font-weight : bold;*/
+    text-decoration: none;
 }
 
 a:link:hover, a:visited:hover  {
-  color: #045491;
-  /*font-weight : bold;*/
-  text-decoration : underline;
+    color: #045491;
+    /*font-weight : bold;*/
+    text-decoration : underline;
 }
 
 td.logo{
@@ -35,4 +35,38 @@ td.logo{
 #prods.header{
     background: white;
     font-weight: bold;
+}
+div.headerProductos > div:first-child{
+    background-color: white;
+    background: white;
+    color: black;
+    text-align: left;
+    text-transform: uppercase;
+    font-size: 18px;
+    padding: 15px;
+    border: none;
+}
+
+.detallesProductos{
+    text-align: left;
+    color: #527dbb;
+}
+
+tbody tr:last-child td{
+    text-align: right;
+    position: relative;
+    bottom: 15px;
+}
+
+.marcaProducto{
+    color: #527dbb; 
+}
+
+.nombreProducto{
+    font-weight: 600;
+}
+
+.precioProducto{
+    margin-top: 15px;
+    color: black;
 }
