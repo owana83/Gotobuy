@@ -11,20 +11,22 @@
     <ui:define name="content">
         <h:form id="form">
             <p:dataGrid var="prod" value="#{productoBean.productosSubcategoria}" columns="4" layout="grid"
-                        rows="40" paginator="false" id="prods" lazy="true">
+                        rows="40" paginator="false" id="prods" lazy="true" styleClass="headerProductos">
 
-                <f:facet name="header" class="header">
-                    Cars for Sale
+                <f:facet name="header" class="header">   
+                    #{productoBean.data}
                 </f:facet>
 
                 <p:panel style="text-align:center">
-                    <h:panelGrid columns="1" style="width:100%">
+                    <h:panelGrid columns="1" style="width:100%" columnClasses="detallesProductos">
                         <p:graphicImage value="../resources/images/mercado/#{prod.subcategoria}/#{prod.imagen}" width="100%" title="#{prod.nombre}"/> 
-                        
-                        <h:outputText value="#{prod.subcategoria}" />
-                        <h:outputText value="#{prod.nombre}" />
-                        <h:outputText value="#{prod.precio}" />
-                        <h:outputText value="#{prod.marca}" />
+                        <h:outputText value="#{prod.marca}"  styleClass="marcaProducto"/>
+                        <h:outputText value="#{prod.nombre}" styleClass="nombreProducto"  />
+                        <h:outputText value="" />
+                        <h:outputText value="#{prod.precio}" styleClass="precioProducto">
+                            <f:convertNumber type="number" groupingUsed="true" minFractionDigits="2" pattern="#0.00 €"/>
+                        </h:outputText>
+                        <p:commandButton value="Añadir" id="botonAniadir" actionListener="#{buttonView.buttonAction}" ajax="false"/>
                     </h:panelGrid>
                 </p:panel>
 
