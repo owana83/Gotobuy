@@ -11,8 +11,11 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import Dao.IProductoDao;
+import Entities.Ubicacion;
+import Entities.UbicacionId;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
+import java.util.HashSet;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
@@ -24,12 +27,15 @@ import org.primefaces.event.RowEditEvent;
  *
  * @author Fran
  */
-@ViewScoped
+@SessionScoped
 @ManagedBean(name = "productoBean")
 public class ProductoBean {
 
     private List<Producto> productos;
     private List<Producto> productosSubcategoria;
+    private HashSet<String> categorias;
+    private HashSet<String> subcategorias;
+    private Producto productoSelect;
     String data = "";
 
     public ProductoBean() {
@@ -44,8 +50,35 @@ public class ProductoBean {
     }
 
     public List<Producto> getProductosSubcategoria() {
+
         return productosSubcategoria;
     }
+
+    public HashSet<String> getCategorias() {
+        return categorias;
+    }
+
+    public void setCategorias(HashSet<String> categorias) {
+        this.categorias = categorias;
+    }
+
+    public HashSet<String> getSubcategorias() {
+        return subcategorias;
+    }
+
+    public void setSubcategorias(HashSet<String> subcategorias) {
+        this.subcategorias = subcategorias;
+    }
+
+    public Producto getProductoSelect() {
+        return productoSelect;
+    }
+
+    public void setProductoSelect(Producto productoSelect) {
+        this.productoSelect = productoSelect;
+    }
+    
+    
 
     public String getData() {
         return data;
@@ -80,17 +113,28 @@ public class ProductoBean {
      * @param seccion
      * @return
      */
-    public List<Producto> productosSeccion(String seccion) {
+    public void productosSeccion(String seccion) {
         IProductoDao productoDao = new ProductoHbmDao();
         this.productosSubcategoria = new ArrayList<Producto>();
+        this.categorias = new HashSet<String>();
+        this.subcategorias = new HashSet<String>();
+        
         this.productos = productoDao.obtenerProductos();
+        //guardamos todos los productos de la seccion dada
         for (Producto p : productos) {
             if (p.getSeccion().equalsIgnoreCase(seccion)) {
                 this.productosSubcategoria.add(p);
             }
         }
+        //guardamos todas las categorias de la seccion dada
+        for (Producto p : productosSubcategoria) {
+            this.categorias.add(p.getCategoria());
+        }
+        //guardamos todas las subcategorias de la seccion dada
+        for (Producto p : productosSubcategoria) {
+            this.subcategorias.add(p.getSubcategoria());
+        }
         this.data = seccion;
-        return productosSubcategoria;
     }
 
     public void onRowEdit(RowEditEvent event) {
@@ -98,7 +142,7 @@ public class ProductoBean {
         ProductoHbmDao productoDao = new ProductoHbmDao();
         producto = (Producto) event.getObject();
         productoDao.modificarProducto(producto);
-        FacesMessage msg = new FacesMessage("Producto Edited", ((Producto) event.getObject()).getCodigo()+"");
+        FacesMessage msg = new FacesMessage("Producto Edited", ((Producto) event.getObject()).getCodigo() + "");
         FacesContext.getCurrentInstance().addMessage(null, msg);
     }
 
@@ -113,12 +157,22 @@ public class ProductoBean {
      * @param seccion
      */
     public void onAddNew(String seccion) {
-        Producto productoAdd = new Producto();
-        productoAdd.setSeccion(seccion);
+        Producto producto = new Producto(seccion);
         ProductoHbmDao productoDao = new ProductoHbmDao();
-        productoDao.insertarProducto(productoAdd);
+        Ubicacion ubicacion = new Ubicacion();
+        ubicacion.setId(new UbicacionId("1", "1", "1"));
+        producto.setUbicacion(ubicacion);
+        productoDao.insertarProducto(producto);
+        productosSubcategoria.add(producto);
         FacesMessage msg = new FacesMessage("Se ha añadido un nuevo producto", null);
         FacesContext.getCurrentInstance().addMessage(null, msg);
+    }
+    
+    public void borrarProducto() {
+        ProductoHbmDao productoDao = new ProductoHbmDao();
+        productoDao.eliminarProducto(productoSelect);
+        this.productosSubcategoria.remove(productoSelect);
+        productoSelect = null;
     }
 
 }

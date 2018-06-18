@@ -5,13 +5,13 @@
   <class catalog="gotobuy" name="Entities.Ubicacion" optimistic-lock="version" table="ubicacion">
     <composite-id class="Entities.UbicacionId" name="id">
       <key-property name="pasillo" type="string">
-        <column length="3" name="pasillo"/>
+        <column length="3" name="pasillo" default="1"/>
       </key-property>
       <key-property name="estante" type="string">
-        <column length="3" name="estante"/>
+        <column length="3" name="estante" default="1"/>
       </key-property>
       <key-property name="balda" type="string">
-        <column length="3" name="balda"/>
+        <column length="3" name="balda" default="1"/>
       </key-property>
     </composite-id>
     <set fetch="select" inverse="true" lazy="true" name="productos" table="producto">

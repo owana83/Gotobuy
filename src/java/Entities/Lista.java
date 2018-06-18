@@ -11,7 +11,7 @@ import java.util.Set;
 public class Lista  implements java.io.Serializable {
 
 
-     private int idLista;
+     private Integer idLista;
      private Usuario usuario;
      private String nombre;
      private Set<Producto> productos = new HashSet<Producto>(0);
@@ -20,23 +20,23 @@ public class Lista  implements java.io.Serializable {
     }
 
 	
-    public Lista(int idLista, Usuario usuario, String nombre) {
+    public Lista(Integer idLista, Usuario usuario, String nombre) {
         this.idLista = idLista;
         this.usuario = usuario;
         this.nombre = nombre;
     }
-    public Lista(int idLista, Usuario usuario, String nombre, Set<Producto> productos) {
+    public Lista(Integer idLista, Usuario usuario, String nombre, Set<Producto> productos) {
        this.idLista = idLista;
        this.usuario = usuario;
        this.nombre = nombre;
        this.productos = productos;
     }
    
-    public int getIdLista() {
+    public Integer getIdLista() {
         return this.idLista;
     }
     
-    public void setIdLista(int idLista) {
+    public void setIdLista(Integer idLista) {
         this.idLista = idLista;
     }
     public Usuario getUsuario() {

@@ -5,15 +5,18 @@
                 xmlns:p="http://primefaces.org/ui"
                 xmlns:fn="http://java.sun.com/jsp/jstl/functions">
     <h:form id="form">
+        #{productoBean.productosSeccion('mercado')}
         <p:growl id="msgs" showDetail="true"/>
 
-        <p:dataTable id="tablaProductos_admin" widgetVar="tablaProductos_admin" var="p" value="#{productoBean.productosSeccion('mercado')}"  editable="true" style="margin-bottom:20px">
+        <p:dataTable id="tablaProductos_admin" widgetVar="tablaProductos_admin" rowKey="#{p.codigo}"
+                     var="p" value="#{productoBean.productosSubcategoria}"  editable="true" style="margin-bottom:20px"
+                     selection="#{productoBean.productoSelect}" selectionMode="single">
             <f:facet name="header">
                 Productos del Mercado
             </f:facet>
 
-            <p:ajax event="rowEdit" listener="#{productoBean.onRowEdit}" update=":form:msgs" />
-            <p:ajax event="rowEditCancel" listener="#{productoBean.onRowCancel}"  update=":form:msgs" />
+            <p:ajax event="rowEdit" listener="#{productoBean.onRowEdit}" update="j_idt14:form:msgs" />
+            <p:ajax event="rowEditCancel" listener="#{productoBean.onRowCancel}"  update="j_idt14:form:msgs" />
 
             <p:column headerText="Código">
                 <h:outputText value="#{p.codigo}"/>
@@ -24,13 +27,7 @@
                     <f:facet name="output"><h:outputText value="#{p.categoria}" /></f:facet>
                     <f:facet name="input">
                         <h:selectOneMenu value="#{p.categoria}" style="width:100%">
-                            <f:selectItem itemLabel="Frutas" itemValue="frutas"/>
-                            <f:selectItem itemLabel="Verduras y Hortalizas" itemValue="Verduras y Hortalizas"/>
-                            <f:selectItem itemLabel="Carnicería" itemValue="Carnicería"/>
-                            <f:selectItem itemLabel="Sushi y Recién Hecho" itemValue="Sushi y Recién Hecho"/>
-                            <f:selectItem itemLabel="Pescadería" itemValue="Pescadería"/>
-                            <f:selectItem itemLabel="Charcutería" itemValue="Charcutería"/>
-                            <f:selectItem itemLabel="Panadería, Bollería y Pastelería" itemValue="Panadería, Bollería y Pastelería"/>
+                            <f:selectItems value="#{productoBean.categorias}" var="subcategorias" itemLabel="#{subcategorias}" itemValue="#{subcategorias}" />
                         </h:selectOneMenu>
                     </f:facet>
                 </p:cellEditor>
@@ -39,56 +36,64 @@
             <p:column headerText="Subcategoría">
                 <p:cellEditor>
                     <f:facet name="output"><h:outputText value="#{p.subcategoria}" /></f:facet>
-                    <f:facet name="input"><p:inputText value="#{p.subcategoria}" style="width:100%"/></f:facet>
+                    <f:facet name="input">
+                        <h:selectOneMenu value="#{p.subcategoria}" style="width:100%">
+                            <f:selectItems value="#{productoBean.subcategorias}" var="subcategorias" itemLabel="#{subcategorias}" itemValue="#{subcategorias}" />
+                        </h:selectOneMenu>
+                    </f:facet>
                 </p:cellEditor>
             </p:column>
 
             <p:column headerText="Marca">
                 <p:cellEditor>
                     <f:facet name="output"><h:outputText value="#{p.marca}" /></f:facet>
-                    <f:facet name="input"><p:inputText value="#{p.marca}" style="width:100%"/></f:facet>
+                    <f:facet name="input"><p:inputText value="#{p.marca}" style="width:90%"/></f:facet>
                 </p:cellEditor>
             </p:column>
 
             <p:column headerText="Nombre">
                 <p:cellEditor>
                     <f:facet name="output"><h:outputText value="#{p.nombre}" /></f:facet>
-                    <f:facet name="input"><p:inputText value="#{p.nombre}" style="width:100%"/></f:facet>
+                    <f:facet name="input"><p:inputText value="#{p.nombre}" style="width:90%"/></f:facet>
                 </p:cellEditor>
             </p:column>
 
-            <p:column headerText="Precio">
+            <p:column headerText="Precio" style="text-align: center">
                 <p:cellEditor>
-                    <f:facet name="output"><h:outputText value="#{p.precio}" /></f:facet>
-                    <f:facet name="input"><p:inputText value="#{p.precio}" style="width:100%"/></f:facet>
+                    <f:facet name="output">
+                        <h:outputText value="#{p.precio}" styleClass="precioProducto">
+                            <f:convertNumber type="number" groupingUsed="true" minFractionDigits="2" pattern="#0.00 €"/>
+                        </h:outputText>
+                    </f:facet>
+                    <f:facet name="input"><p:inputText value="#{p.precio}" style="width:90%"/></f:facet>
                 </p:cellEditor>
             </p:column>
 
             <p:column headerText="Imagen">
                 <p:cellEditor>
                     <f:facet name="output"><h:outputText value="#{p.imagen}" /></f:facet>
-                    <f:facet name="input"><p:inputText value="#{p.imagen}" style="width:100%"/></f:facet>
+                    <f:facet name="input"><h:outputText value="#{p.imagen}" /></f:facet>
                 </p:cellEditor>
             </p:column>
 
             <p:column headerText="Pasillo">
                 <p:cellEditor>
                     <f:facet name="output"><h:outputText value="#{p.ubicacion.id.pasillo}" /></f:facet>
-                    <f:facet name="input"><p:inputText value="#{p.ubicacion.id.pasillo}" style="width:100%"/></f:facet>
+                    <f:facet name="input"><p:inputText value="#{p.ubicacion.id.pasillo}" style="width:90%"/></f:facet>
                 </p:cellEditor>
             </p:column>
 
             <p:column headerText="Estante">
                 <p:cellEditor>
                     <f:facet name="output"><h:outputText value="#{p.ubicacion.id.estante}" /></f:facet>
-                    <f:facet name="input"><p:inputText value="#{p.ubicacion.id.estante}" style="width:100%"/></f:facet>
+                    <f:facet name="input"><p:inputText value="#{p.ubicacion.id.estante}" style="width:90%"/></f:facet>
                 </p:cellEditor>
             </p:column>
 
             <p:column headerText="Balda">
                 <p:cellEditor>
                     <f:facet name="output"><h:outputText value="#{p.ubicacion.id.balda}" /></f:facet>
-                    <f:facet name="input"><p:inputText value="#{p.ubicacion.id.balda}" style="width:100%"/></f:facet>
+                    <f:facet name="input"><p:inputText value="#{p.ubicacion.id.balda}" style="width:90%"/></f:facet>
                 </p:cellEditor>
             </p:column>
 
@@ -96,13 +101,45 @@
                 <p:rowEditor />
             </p:column>
         </p:dataTable>
-
-
         <div class="ui-g">
             <div class="ui-g-12">
-                <p:commandButton value="Add new row" styleClass="ui-priority-primary" process="@this" update=":form:msgs"
+                <p:commandButton value="Add new row" styleClass="ui-priority-primary" process="@this" update="j_idt14:form:msgs"
                                  actionListener="#{productoBean.onAddNew('mercado')}" oncomplete="PF('tablaProductos_admin').addRow();"/>
             </div>
         </div>
+        <p:contextMenu for="tablaProductos_admin">
+            <p:menuitem value="View" update="productoDetail" icon="ui-icon-search" oncomplete="PF('productoDialog').show()"/>
+            <p:menuitem value="Delete" update="tablaProductos_admin" icon="ui-icon-close" actionListener="#{productoBean.borrarProducto}"/>
+        </p:contextMenu>
+
+        <p:dialog header="Detalles del Producto" widgetVar="productoDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+            <p:outputPanel id="productoDetail" style="text-align:center;">
+                <p:panelGrid  columns="2" rendered="#{not empty productoBean.productoSelect}" columnClasses="label,value">
+                    <f:facet name="header">
+                        <p:graphicImage name="images/mercado/#{productoBean.productoSelect.subcategoria}/#{productoBean.productoSelect.imagen}" width="300px" title="#{productoBean.productoSelect.nombre}"/> 
+                    </f:facet>
+
+                    <h:outputText value="Codigo:" />
+                    <h:outputText value="#{productoBean.productoSelect.codigo}" />
+
+                    <h:outputText value="Categoria:" />
+                    <h:outputText value="#{productoBean.productoSelect.categoria}" />
+
+                    <h:outputText value="Subcategoria:" />
+                    <h:outputText value="#{productoBean.productoSelect.subcategoria}"/>
+
+                    <h:outputText value="Marca" />
+                    <h:outputText value="#{productoBean.productoSelect.marca}" />
+
+                    <h:outputText value="Nombre:" />
+                    <h:outputText value="#{productoBean.productoSelect.nombre}" />
+
+                    <h:outputText value="Precio:" />
+                    <h:outputText value="#{productoBean.productoSelect.precio}" styleClass="precioProducto">
+                        <f:convertNumber type="number" groupingUsed="true" minFractionDigits="2" pattern="#0.00 €"/>
+                    </h:outputText>                    
+                </p:panelGrid>
+            </p:outputPanel>
+        </p:dialog>
     </h:form>
 </ui:composition>

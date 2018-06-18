@@ -19,7 +19,7 @@ import org.hibernate.Transaction;
  */
 public class ProductoHbmDao implements IProductoDao {
 
-    private Session session;
+    private Session session = null;
     private Transaction tx;
 
     @Override
@@ -49,22 +49,20 @@ public class ProductoHbmDao implements IProductoDao {
     }
 
     @Override
-    public long insertarProducto(Producto producto) throws HibernateException {
+    public void insertarProducto(Producto producto) throws HibernateException {
 
-        long id = 0;
 
         try {
             iniciaOperacion();
-            id = (Long) session.save(producto);
+            session.save(producto);
             tx.commit();
         } catch (HibernateException he) {
             manejaExcepcion(he);
+            he.getMessage();
             throw he;
         } finally {
             session.close();
         }
-
-        return id;
     }
 
     @Override

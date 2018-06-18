@@ -3,7 +3,7 @@
 <!-- Generated 25-may-2018 20:04:57 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
   <class catalog="gotobuy" name="Entities.Lista" optimistic-lock="version" table="lista">
-    <id name="idLista" type="int">
+    <id name="idLista" type="java.lang.Integer">
       <column name="idLista"/>
       <generator class="assigned"/>
     </id>

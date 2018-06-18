@@ -11,7 +11,7 @@ import java.util.Set;
 public class Producto  implements java.io.Serializable {
 
 
-     private int codigo;
+     private Integer codigo;
      private Ubicacion ubicacion;
      private String seccion;
      private String categoria;
@@ -20,17 +20,17 @@ public class Producto  implements java.io.Serializable {
      private String nombre;
      private Double precio;
      private String imagen;
-     private Set<Lista> listas = new HashSet<Lista>(0);
+    // private Set<Lista> listas = new HashSet<Lista>(0);
 
     public Producto() {
     }
 
 	
-    public Producto(int codigo, Ubicacion ubicacion) {
+    public Producto(Integer codigo, Ubicacion ubicacion) {
         this.codigo = codigo;
         this.ubicacion = ubicacion;
     }
-    public Producto(int codigo, Ubicacion ubicacion, String seccion, String categoria, String subcategoria, String marca, String nombre, Double precio, String imagen, Set<Lista> listas) {
+    public Producto(Integer codigo, Ubicacion ubicacion, String seccion, String categoria, String subcategoria, String marca, String nombre, Double precio, String imagen) {
        this.codigo = codigo;
        this.ubicacion = ubicacion;
        this.seccion = seccion;
@@ -40,14 +40,20 @@ public class Producto  implements java.io.Serializable {
        this.nombre = nombre;
        this.precio = precio;
        this.imagen = imagen;
-       this.listas = listas;
+     //  this.listas = listas;
     }
+
+    public Producto(String seccion) {
+        this.seccion = seccion;
+    }
+    
+    
    
-    public int getCodigo() {
+    public Integer getCodigo() {
         return this.codigo;
     }
     
-    public void setCodigo(int codigo) {
+    public void setCodigo(Integer codigo) {
         this.codigo = codigo;
     }
     public Ubicacion getUbicacion() {
@@ -106,13 +112,14 @@ public class Producto  implements java.io.Serializable {
     public void setImagen(String imagen) {
         this.imagen = imagen;
     }
+    /*
     public Set<Lista> getListas() {
         return this.listas;
     }
     
     public void setListas(Set<Lista> listas) {
         this.listas = listas;
-    }
+    }*/
 
 }
 

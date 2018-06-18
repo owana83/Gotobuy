@@ -3,14 +3,14 @@
 <!-- Generated 25-may-2018 20:04:57 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
   <class catalog="gotobuy" name="Entities.Producto" optimistic-lock="version" table="producto">
-    <id name="codigo" type="int">
+    <id name="codigo" type="java.lang.Integer">
       <column name="codigo"/>
-      <generator class="assigned"/>
+      <generator class="identity"/>
     </id>
     <many-to-one class="Entities.Ubicacion" fetch="select" name="ubicacion">
-      <column length="3" name="Ubicacion_pasillo" not-null="true"/>
-      <column length="3" name="Ubicacion_estante" not-null="true"/>
-      <column length="3" name="Ubicacion_balda" not-null="true"/>
+      <column length="3" name="Ubicacion_pasillo" not-null="true" default="1"/>
+      <column length="3" name="Ubicacion_estante" not-null="true" default="1"/>
+      <column length="3" name="Ubicacion_balda" not-null="true" default="1"/>
     </many-to-one>
     <property name="seccion" type="string">
       <column length="45" name="seccion"/>
@@ -33,11 +33,11 @@
     <property name="imagen" type="string">
       <column length="60" name="imagen"/>
     </property>
-    <set fetch="select" inverse="true" lazy="true" name="listas" table="lista_tiene_producto">
+<!--    <set fetch="select" inverse="true" lazy="true" name="listas" table="lista_tiene_producto">
       <key>
         <column name="Producto_codigo" not-null="true"/>
       </key>
       <many-to-many class="Entities.Lista" column="Lista_idLista"/>
-    </set>
+    </set>-->
   </class>
 </hibernate-mapping>
