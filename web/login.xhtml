@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Login</title>
+        <link href="#{appBean.baseUrl}resources/css/login.css" type="text/css" rel="stylesheet"/>
+    </h:head>
+    <h:body>
+        <div class="container">
+            <p:growl id="growl" sticky="true" showDetail="true" life="3000" />
+            <h:form id="formLogin">
+                <p:growl id="msgs" showDetail="false" />
+
+                <p:panel id="basic" header="Inicio sesión" footer="He olvidado mi contraseña" style="margin-bottom:20px">
+                    <h:panelGrid columns="2" cellpadding="5">
+                        <h:outputLabel for="email" value="Email:" />
+                        <p:inputText id="email" value="#{loginBean.usuario.email}" required="true" label="email" placeholder="111@gmail.com"/>
+
+                        <h:outputLabel for="password" value="Contraseña:" />
+                        <p:password id="password" value="#{loginBean.usuario.password}" required="true" label="password" placeholder="111"/>
+
+                        <f:facet name="footer">
+                            <p:commandButton value="Login" update="growl" actionListener="#{loginBean.login}" icon="icon-login"
+                                             oncomplete="handleLoginRequest(xhr, status, args)" />
+                        </f:facet>  
+                    </h:panelGrid>
+                </p:panel>
+            </h:form>
+        </div>
+        <script type="text/javascript">
+            function handleLoginRequest(xhr, status, args) {
+                if(args.validationFailed || !args.loggedIn) {
+
+                }
+                else {
+                    location.href = args.ruta;
+                }
+            }
+        </script>
+    </h:body>
+</html> 
+

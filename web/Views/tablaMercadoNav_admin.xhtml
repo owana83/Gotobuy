@@ -12,8 +12,8 @@
                 Productos del Mercado
             </f:facet>
 
-            <p:ajax event="rowEdit" listener="#{productoBean.onRowEdit}" update="j_idt14:form:tablaProductos_admin" />
-            <p:ajax event="rowEditCancel" listener="#{productoBean.onRowCancel}"  update="j_idt14:form:msgs" />
+            <p:ajax event="rowEdit" listener="#{productoBean.onRowEdit}" update=":form:msgs" />
+            <p:ajax event="rowEditCancel" listener="#{productoBean.onRowCancel}"  update=":form:msgs" />
 
             <p:column headerText="Código">
                 <h:outputText value="#{p.codigo}"/>
@@ -100,7 +100,7 @@
 
         <div class="ui-g">
             <div class="ui-g-12">
-                <p:commandButton value="Add new row" styleClass="ui-priority-primary" process="@this" update="j_idt14:form:tablaProductos_admin"
+                <p:commandButton value="Add new row" styleClass="ui-priority-primary" process="@this" update=":form:msgs"
                                  actionListener="#{productoBean.onAddNew('mercado')}" oncomplete="PF('tablaProductos_admin').addRow();"/>
             </div>
         </div>

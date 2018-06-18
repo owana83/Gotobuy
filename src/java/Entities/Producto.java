@@ -114,9 +114,6 @@ public class Producto  implements java.io.Serializable {
         this.listas = listas;
     }
 
-
-
-
 }
 
 
