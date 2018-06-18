@@ -5,51 +5,51 @@
  */
 package Dao;
 
-import Entities.Producto;
+import Entities.Lista;
 import Persistencia.HibernateUtil;
 import java.util.List;
 import org.hibernate.HibernateException;
-import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 /**
  *
- * @author Fran
+ * @author owana83
  */
-public class ProductoHbmDao implements IProductoDao {
+public class ListaHbmDao implements IListaDao{
 
     private Session session;
     private Transaction tx;
 
     @Override
-    public List<Producto> obtenerProductos() {
-        List<Producto> listaProductos = null;
+    public List<Lista> obtenerListas() {
+        List<Lista> listaListas = null;
 
         try {
             iniciaOperacion();
-            listaProductos = session.createQuery("from Producto").list();
+            listaListas = session.createQuery("from Lista").list();
         } finally {
             session.close();
         }
 
-        return listaProductos;
+        return listaListas;
     }
 
-    public Producto obtenerProducto(int codigo) throws HibernateException {
-        Producto producto = null;
+    public Lista obtenerMiLista(int id) throws HibernateException {
+        Lista lista = null;
         try {
             iniciaOperacion();
-            producto = (Producto) session.get(Producto.class, codigo);
-        } finally {
+            lista = (Lista) session.get(Lista.class, id);
+        }catch(Exception e){
+        /*finally {
             session.close();
-        }
+        */
 
-        return producto;
     }
-
+        return lista;
+    }
     @Override
-    public long insertarProducto(Producto producto) throws HibernateException {
+    public long insertarLista(Lista producto) throws HibernateException {
 
         long id = 0;
 
@@ -68,31 +68,15 @@ public class ProductoHbmDao implements IProductoDao {
     }
 
     @Override
-    public void modificarProducto(Producto producto) {
-        try {
-            iniciaOperacion();
-            session.update(producto);
-            tx.commit();
-        } catch (HibernateException he) {
-            manejaExcepcion(he);
-            throw he;
-        } finally {
-            session.close();
-        }
+    public void modificarLista(Lista producto) {
+
+//        coger de la aplicacion del movil
     }
 
     @Override
-    public void eliminarProducto(Producto producto) {
-        try {
-            iniciaOperacion();
-            session.delete(producto);
-            tx.commit();
-        } catch (HibernateException he) {
-            manejaExcepcion(he);
-            throw he;
-        } finally {
-            session.close();
-        }
+    public void eliminarLista(Lista producto) {
+
+//        coger de la aplicacion del movil
     }
 
     private void iniciaOperacion() throws HibernateException {

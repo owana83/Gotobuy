@@ -23,6 +23,6 @@
         </session-timeout>
     </session-config>
     <welcome-file-list>
-        <welcome-file>faces/login.xhtml</welcome-file>
+        <welcome-file>faces/Views/inicio.xhtml</welcome-file>
     </welcome-file-list>
 </web-app>

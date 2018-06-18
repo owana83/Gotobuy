@@ -1,0 +1,108 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:fn="http://java.sun.com/jsp/jstl/functions">
+    <h:form id="form">
+        <p:growl id="msgs" showDetail="true"/>
+
+        <p:dataTable id="tablaProductos_admin" widgetVar="tablaProductos_admin" var="p" value="#{productoBean.productosSeccion('mercado')}"  editable="true" style="margin-bottom:20px">
+            <f:facet name="header">
+                Productos del Mercado
+            </f:facet>
+
+            <p:ajax event="rowEdit" listener="#{productoBean.onRowEdit}" update="j_idt14:form:tablaProductos_admin" />
+            <p:ajax event="rowEditCancel" listener="#{productoBean.onRowCancel}"  update="j_idt14:form:msgs" />
+
+            <p:column headerText="Código">
+                <h:outputText value="#{p.codigo}"/>
+            </p:column>
+
+            <p:column headerText="Categoría">
+                <p:cellEditor>
+                    <f:facet name="output"><h:outputText value="#{p.categoria}" /></f:facet>
+                    <f:facet name="input">
+                        <h:selectOneMenu value="#{p.categoria}" style="width:100%">
+                            <f:selectItem itemLabel="Frutas" itemValue="frutas"/>
+                            <f:selectItem itemLabel="Verduras y Hortalizas" itemValue="Verduras y Hortalizas"/>
+                            <f:selectItem itemLabel="Carnicería" itemValue="Carnicería"/>
+                            <f:selectItem itemLabel="Sushi y Recién Hecho" itemValue="Sushi y Recién Hecho"/>
+                            <f:selectItem itemLabel="Pescadería" itemValue="Pescadería"/>
+                            <f:selectItem itemLabel="Charcutería" itemValue="Charcutería"/>
+                            <f:selectItem itemLabel="Panadería, Bollería y Pastelería" itemValue="Panadería, Bollería y Pastelería"/>
+                        </h:selectOneMenu>
+                    </f:facet>
+                </p:cellEditor>
+            </p:column>
+
+            <p:column headerText="Subcategoría">
+                <p:cellEditor>
+                    <f:facet name="output"><h:outputText value="#{p.subcategoria}" /></f:facet>
+                    <f:facet name="input"><p:inputText value="#{p.subcategoria}" style="width:100%"/></f:facet>
+                </p:cellEditor>
+            </p:column>
+
+            <p:column headerText="Marca">
+                <p:cellEditor>
+                    <f:facet name="output"><h:outputText value="#{p.marca}" /></f:facet>
+                    <f:facet name="input"><p:inputText value="#{p.marca}" style="width:100%"/></f:facet>
+                </p:cellEditor>
+            </p:column>
+
+            <p:column headerText="Nombre">
+                <p:cellEditor>
+                    <f:facet name="output"><h:outputText value="#{p.nombre}" /></f:facet>
+                    <f:facet name="input"><p:inputText value="#{p.nombre}" style="width:100%"/></f:facet>
+                </p:cellEditor>
+            </p:column>
+
+            <p:column headerText="Precio">
+                <p:cellEditor>
+                    <f:facet name="output"><h:outputText value="#{p.precio}" /></f:facet>
+                    <f:facet name="input"><p:inputText value="#{p.precio}" style="width:100%"/></f:facet>
+                </p:cellEditor>
+            </p:column>
+
+            <p:column headerText="Imagen">
+                <p:cellEditor>
+                    <f:facet name="output"><h:outputText value="#{p.imagen}" /></f:facet>
+                    <f:facet name="input"><p:inputText value="#{p.imagen}" style="width:100%"/></f:facet>
+                </p:cellEditor>
+            </p:column>
+
+            <p:column headerText="Pasillo">
+                <p:cellEditor>
+                    <f:facet name="output"><h:outputText value="#{p.ubicacion.id.pasillo}" /></f:facet>
+                    <f:facet name="input"><p:inputText value="#{p.ubicacion.id.pasillo}" style="width:100%"/></f:facet>
+                </p:cellEditor>
+            </p:column>
+
+            <p:column headerText="Estante">
+                <p:cellEditor>
+                    <f:facet name="output"><h:outputText value="#{p.ubicacion.id.estante}" /></f:facet>
+                    <f:facet name="input"><p:inputText value="#{p.ubicacion.id.estante}" style="width:100%"/></f:facet>
+                </p:cellEditor>
+            </p:column>
+
+            <p:column headerText="Balda">
+                <p:cellEditor>
+                    <f:facet name="output"><h:outputText value="#{p.ubicacion.id.balda}" /></f:facet>
+                    <f:facet name="input"><p:inputText value="#{p.ubicacion.id.balda}" style="width:100%"/></f:facet>
+                </p:cellEditor>
+            </p:column>
+
+            <p:column style="width:32px">
+                <p:rowEditor />
+            </p:column>
+        </p:dataTable>
+
+
+        <div class="ui-g">
+            <div class="ui-g-12">
+                <p:commandButton value="Add new row" styleClass="ui-priority-primary" process="@this" update="j_idt14:form:tablaProductos_admin"
+                                 actionListener="#{productoBean.onAddNew('mercado')}" oncomplete="PF('tablaProductos_admin').addRow();"/>
+            </div>
+        </div>
+    </h:form>
+</ui:composition>

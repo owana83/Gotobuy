@@ -41,9 +41,4 @@ public class Ubicacion  implements java.io.Serializable {
         this.productos = productos;
     }
 
-
-
-
 }
-
-

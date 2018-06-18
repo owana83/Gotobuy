@@ -13,12 +13,10 @@ import java.util.List;
  * @author Fran
  */
 public interface IProductoDao {
-    
+
     public List<Producto> obtenerProductos();
-//    public List<Producto> mostrarProductosSeccion();
-    public void insertarProducto(Producto producto) throws Exception;
+    public long insertarProducto(Producto producto) throws Exception;
     public void modificarProducto(Producto producto) throws Exception;
     public void eliminarProducto(Producto producto) throws Exception;
-        
-    
+
 }

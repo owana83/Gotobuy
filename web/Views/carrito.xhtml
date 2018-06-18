@@ -1,0 +1,43 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+                template="template.xhtml">
+    <ui:define name="nav">
+        <ui:include src="tabView.xhtml"/>
+    </ui:define>
+    <ui:define name="content">
+        <h:form id="formCarrito">
+            <p:dataScroller value="#{listaBean.getLista(3).productos}" var="prod" chunkSize="10">
+                <f:facet name="header">
+                    #{listaBean.getLista(3).nombre}
+                </f:facet>
+
+                <h:panelGrid columns="3" style="width:100%" columnClasses="logo,detail,precio" rowClasses="fondoCeleste">
+                    <p:graphicImage value="../resources/images/mercado/#{prod.subcategoria}/#{prod.imagen}" width="100%" title="#{prod.nombre}"/> 
+
+                    <p:outputPanel>
+                        <h:panelGrid columns="2" cellpadding="5">
+                            <h:outputText value="Marca:" />
+                            <h:outputText value="#{prod.marca}"  styleClass="marcaProducto"/>
+
+                            <h:outputText value="Nombre:" />
+                            <h:outputText value="#{prod.nombre}" styleClass="nombreProducto"/>
+                        </h:panelGrid>
+                    </p:outputPanel>
+                    <p:outputPanel>
+                        <h:panelGrid columns="2" cellpadding="5">
+                            <h:outputText value="Precio:" />
+                            <h:outputText value="#{prod.precio}" styleClass="precioProducto">
+                                <f:convertNumber type="number" groupingUsed="true" minFractionDigits="2" pattern="#0.00 €"/>
+                            </h:outputText>
+                        </h:panelGrid>
+                    </p:outputPanel>
+
+                </h:panelGrid>
+            </p:dataScroller>
+        </h:form>
+    </ui:define>
+</ui:composition>

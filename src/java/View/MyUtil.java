@@ -5,6 +5,8 @@
  */
 package View;
 
+import javax.faces.context.FacesContext;
+
 /**
  *
  * @author Fran
@@ -17,6 +19,15 @@ public class MyUtil {
     
     public static String basePathLogin(){
         return "/Gotobuy/faces/";
+    }
+    
+    public static void redireccionar(String url){
+        try {
+            FacesContext facesContext = FacesContext.getCurrentInstance();
+            facesContext.getExternalContext().redirect(url);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
     
 }

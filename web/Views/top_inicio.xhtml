@@ -5,14 +5,12 @@
                 xmlns:p="http://primefaces.org/ui"
                 xmlns:fn="http://java.sun.com/jsp/jstl/functions">
     <f:metadata>
-        <f:event listener="#{loginBean.verificarLogin()}" type="preRenderView"/>
+        <f:event listener="#{loginBean.verificarLoginDeInicio()}" type="preRenderView"/>
     </f:metadata>
     <div class="ui-g">
         <div class="ui-g-12 ui-md-10 ui-g-nopad">
             <div class="ui-g-12">
-                <h:link outcome="inicio">
-                    <h:graphicImage value="../resources/images/untitled.svg" height="50px"/>
-                </h:link>
+                <h:graphicImage value="../resources/images/untitled.svg" height="50px"/>
             </div>
         </div>
         <h:form>

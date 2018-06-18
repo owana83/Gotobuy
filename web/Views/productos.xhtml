@@ -1,36 +1,42 @@
-<ui:composition xmlns="http://www.w3.org/1999/xhtml"
-                xmlns:ui="http://java.sun.com/jsf/facelets"
-                xmlns:h="http://java.sun.com/jsf/html"
-                xmlns:f="http://java.sun.com/jsf/core"
-                xmlns:p="http://primefaces.org/ui"
-                xmlns:fn="http://java.sun.com/jsp/jstl/functions"
-                template="template.xhtml">
-    <ui:define name="nav">
-        <ui:include src="tabView.xhtml"/>
-    </ui:define>
-    <ui:define name="content">
-        <h:form id="form">
-            <p:dataGrid var="prod" value="#{productoBean.productosSubcategoria}" columns="4" layout="grid"
-                        rows="40" paginator="false" id="prods" lazy="true" styleClass="headerProductos">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head></h:head>
+    <body>
+        <ui:composition template="template.xhtml">
+            <ui:define name="nav">
+                <ui:include src="tabView.xhtml"/>
+            </ui:define>
+            <ui:define name="content">
+                <h:form id="formProductos">
 
-                <f:facet name="header" class="header">   
-                    #{productoBean.data}
-                </f:facet>
 
-                <p:panel style="text-align:center">
-                    <h:panelGrid columns="1" style="width:100%" columnClasses="detallesProductos">
-                        <p:graphicImage value="../resources/images/mercado/#{prod.subcategoria}/#{prod.imagen}" width="100%" title="#{prod.nombre}"/> 
-                        <h:outputText value="#{prod.marca}"  styleClass="marcaProducto"/>
-                        <h:outputText value="#{prod.nombre}" styleClass="nombreProducto"  />
-                        <h:outputText value="" />
-                        <h:outputText value="#{prod.precio}" styleClass="precioProducto">
-                            <f:convertNumber type="number" groupingUsed="true" minFractionDigits="2" pattern="#0.00 €"/>
-                        </h:outputText>
-                        <p:commandButton value="Añadir" id="botonAniadir" actionListener="#{buttonView.buttonAction}" ajax="false"/>
-                    </h:panelGrid>
-                </p:panel>
+                    <p:dataGrid var="prod" value="#{productoBean.productosSubcategoria}" columns="4" layout="grid"
+                                rows="40" paginator="false" id="prods" lazy="true" styleClass="headerProductos">
+                        <p:growl id="growl" life="2000"  />
+                        <f:facet name="header" class="header">   
+                            #{productoBean.data}
+                        </f:facet>
 
-            </p:dataGrid>
-        </h:form>
-    </ui:define>
-</ui:composition>
+                        <p:panel style="text-align:center">
+                            <h:panelGrid columns="1" style="width:100%" columnClasses="detallesProductos">
+                                <p:graphicImage value="../resources/images/mercado/#{prod.subcategoria}/#{prod.imagen}" width="100%" title="#{prod.nombre}"/> 
+                                <h:outputText value="#{prod.marca}"  styleClass="marcaProducto"/>
+                                <h:outputText value="#{prod.nombre}" styleClass="nombreProducto"  />
+                                <h:outputText value="" />
+                                <h:outputText value="#{prod.precio}" styleClass="precioProducto">
+                                    <f:convertNumber type="number" groupingUsed="true" minFractionDigits="2" pattern="#0.00 €"/>
+                                </h:outputText>
+                                <p:commandButton value="Añadir" id="botonAniadir" update="growl" actionListener="#{productoBean.buttonAction(actionEvent)}" styleClass="ui-priority-primary" />
+
+                            </h:panelGrid>
+                        </p:panel>
+
+                    </p:dataGrid>
+                </h:form>
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>

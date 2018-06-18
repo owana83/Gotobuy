@@ -52,7 +52,7 @@ div.headerProductos > div:first-child{
     color: #527dbb;
 }
 
-tbody tr:last-child td{
+#formProductos tbody tr:last-child td{
     text-align: right;
     position: relative;
     bottom: 15px;
@@ -70,3 +70,26 @@ tbody tr:last-child td{
     margin-top: 15px;
     color: black;
 }
+
+#formCarrito.precioProducto{
+    margin-top: 0;
+    text-align: right;
+}
+
+#formCarrito td.detail{
+    width: 50%;
+}
+
+.fondoCeleste{
+    background-color:#ddeeff2e;
+}
+
+#divFooter {font-family: 'Open Sans', sans-serif; background-color: rgb(18, 18, 18); color: rgb(180, 173, 173); padding-top: 32px; line-height: 23px; font-size: 12px; text-transform: none; background-image: url(backgrounds/noisy_net.png); background-repeat: repeat repeat;}
+
+#divFooter a {color: rgb(132, 164, 51);}
+
+#divFooter h3 {color: rgb(180, 173, 173);}
+
+#divFooter {margin-left:-20px;margin-right:-20px;padding-left:20px;padding-right:20px;}
+
+#divBoxed > #divFooter {margin-left:0px;margin-right:0px;padding-left:0px;padding-right:0px;}
