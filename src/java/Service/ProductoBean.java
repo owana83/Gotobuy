@@ -14,6 +14,7 @@ import Dao.IProductoDao;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import javax.faces.application.FacesMessage;
+import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Scope;
 import org.primefaces.event.CellEditEvent;
@@ -23,18 +24,10 @@ import org.primefaces.event.RowEditEvent;
  *
  * @author Fran
  */
-@SessionScoped
+@ViewScoped
 @ManagedBean(name = "productoBean")
 public class ProductoBean {
-    Producto producto;
 
-    public Producto getProducto() {
-        return producto;
-    }
-
-    public void setProducto(Producto producto) {
-        this.producto = producto;
-    }
     private List<Producto> productos;
     private List<Producto> productosSubcategoria;
     String data = "";
@@ -101,10 +94,7 @@ public class ProductoBean {
     }
 
     public void onRowEdit(RowEditEvent event) {
-        /*Producto productoRecuperado = (Producto) event.getObject();
-        ProductoHbmDao productoDao = new ProductoHbmDao();
-        productoDao.modificarProducto(producto);
-        producto = new Producto();*/
+        Producto producto = new Producto();
         ProductoHbmDao productoDao = new ProductoHbmDao();
         producto = (Producto) event.getObject();
         productoDao.modificarProducto(producto);
